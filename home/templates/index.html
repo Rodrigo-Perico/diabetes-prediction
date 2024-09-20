@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+
+    <a href="{% url 'cadastro' %}">Cadastro</a>
+    
+    <!-- Link para a página de login -->
+    <a href="{% url 'login' %}">Login</a>
+    
+</body>
+</html>

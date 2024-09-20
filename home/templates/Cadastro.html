@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <form action="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="password" name="senha" placeholder="Senha">
+        <input type="submit" value="Cadastrar">
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </form>
+</body>
+</html>

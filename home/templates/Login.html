@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    {% load static %}
+    <link rel="icon" href="{% static './static/images/favicon.ico' %}" type="image/x-icon">
+
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required><br><br>
+        
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" required><br><br>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+                
+        <input type="submit" value="Login">
+    </form>
+   
+</body>
+</html>
