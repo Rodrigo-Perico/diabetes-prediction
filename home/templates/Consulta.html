@@ -1,0 +1,185 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+    <link rel="stylesheet" href="{% static 'css/Consulta.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-user-md medical-icon"></i>
+            <h1>Diabetes AI</h1>
+        </div>
+        <div class="consulta-container">
+            <h2>Formulário para Análise</h2>
+            <br>
+            <form action="{% url 'consulta' %}" method="POST"> <!-- Alterado para chamar a URL da consulta -->
+                {% csrf_token %}
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="pressao_alta">Pressão Alta</label>
+                        <select id="pressao_alta" name="pressao_alta" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="colesterol_alto">Colesterol Alto</label>
+                        <select id="colesterol_alto" name="colesterol_alto" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="checagem_colesterol">Checagem de colesterol</label>
+                        <select id="checagem_colesterol" name="checagem_colesterol" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="imc">IMC</label>
+                        <input type="text" id="imc" name="imc" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="fumante">Fumante</label>
+                        <select id="fumante" name="fumante" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="avc">AVC</label>
+                        <select id="avc" name="avc" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="doencas_cardiacas">Doenças Cardíacas</label>
+                        <select id="doencas_cardiacas" name="doencas_cardiacas" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="atividades_fisicas">Atividades Físicas (últimos 30 Dias)</label>
+                        <select id="atividades_fisicas" name="atividades_fisicas" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="consome_frutas">Consome Frutas</label>
+                        <select id="consome_frutas" name="consome_frutas" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="consome_vegetais">Consome Vegetais</label>
+                        <select id="consome_vegetais" name="consome_vegetais" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="alto_consumo_alcool">Alto consumo de Álcool</label>
+                        <select id="alto_consumo_alcool" name="alto_consumo_alcool" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="possui_convenio">Possui Convênio</label>
+                        <select id="possui_convenio" name="possui_convenio" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="evitou_consultas">Evitou consultas por questões financeiras</label>
+                        <select id="evitou_consultas" name="evitou_consultas" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="saude_geral">Saúde Geral</label>
+                        <select id="saude_geral" name="saude_geral" required>
+                            <option value="">Selecione</option>
+                            <option value="1">Excelente</option>
+                            <option value="2">Muito Boa</option>
+                            <option value="3">Boa</option>
+                            <option value="4">OK</option>
+                            <option value="5">Ruim</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="saude_mental">Saúde Mental</label>
+                        <select id="saude_mental" name="saude_mental" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="saude_fisica">Saúde Física</label>
+                        <select id="saude_fisica" name="saude_fisica" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="dificuldade_andar">Dificuldade de Andar</label>
+                        <select id="dificuldade_andar" name="dificuldade_andar" required>
+                            <option value="">Selecione</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="genero">Gênero</label>
+                        <select id="genero" name="genero" required>
+                            <option value="">Selecione</option>
+                            <option value="0">Feminino</option>
+                            <option value="1">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="idade">Idade</label>
+                        <input type="number" id="idade" name="idade" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="escolaridade">Escolaridade</label>
+                        <input type="text" id="escolaridade" name="escolaridade" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="renda">Renda</label>
+                        <input type="text" id="renda" name="renda" required>
+                    </div>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

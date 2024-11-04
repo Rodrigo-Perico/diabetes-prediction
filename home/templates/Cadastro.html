@@ -1,24 +1,38 @@
+{% load static %}
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width= , initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/Cadastro.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <form action="{% url 'cadastro' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="nome" placeholder="Nome">
-        <input type="password" name="senha" placeholder="Senha">
-        <input type="submit" value="Cadastrar">
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    </form>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-user-md medical-icon"></i> 
+            <h1>Diabetes AI</h1>
+        </div>
+        <div class="login-container">
+            <h2>Cadastro</h2>
+            <form action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="CRM" placeholder="CRM">
+                <input type="password" name="senha" placeholder="Senha">
+                <input type="submit" value="Cadastrar">
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </form>
+            <p>Já possui uma conta? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
 </body>
 </html>

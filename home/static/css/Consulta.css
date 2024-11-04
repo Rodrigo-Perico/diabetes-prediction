@@ -42,27 +42,33 @@ body {
     }
 }
 
-.login-container {
+.consulta-container {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: 350px;
+    width: 800px;
     text-align: center;
     transition: all 0.3s ease;
 }
 
-.login-container:hover {
+.consulta-container:hover {
     transform: translateY(-5px);
 }
 
-.login-container h2 {
+.consulta-container h2 {
     margin-bottom: 20px;
     color: #333; 
 }
 
+/* Define grid para três colunas */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px; /* Espaçamento entre colunas e linhas */
+}
+
 .input-group {
-    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -73,17 +79,28 @@ body {
     color: #555;
 }
 
+.input-group select,
 .input-group input {
     width: 100%;
     padding: 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: border 0.3s;
+    appearance: none;
+    background-color: #fff;
+    padding-right: 30px; /* Espaço para a seta */
 }
 
+.input-group select:focus,
 .input-group input:focus {
-    border: 1px solid #007bff; 
+    border: 1px solid #007bff;
     outline: none;
+}
+
+.input-group select {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath fill='gray' d='M0 0h10L5 5z'/%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 10px;
 }
 
 button {
@@ -96,6 +113,8 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    margin-top: 20px;
+    grid-column: span 3; /* Expande o botão por toda a largura em três colunas */
 }
 
 button:hover {
@@ -116,24 +135,13 @@ p a:hover {
     color: #0056b3; 
 }
 
-/* Consultas de mídia para responsividade */
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
-    .login-container {
-        width: 90%; /* Largura responsiva para dispositivos móveis */
-        padding: 20px; /* Menos padding em dispositivos menores */
+    .consulta-container {
+        width: 90%;
     }
 
-    .header h1 {
-        font-size: 20px; /* Reduz o tamanho da fonte no cabeçalho */
-    }
-}
-
-@media (min-width: 1200px) {
-    body {
-        height: 100vh; /* Garante que ocupe toda a altura da tela */
-    }
-
-    .login-container {
-        width: 400px; /* Largura maior em telas grandes */
+    .form-grid {
+        grid-template-columns: 1fr; /* Altera para uma coluna em telas pequenas */
     }
 }
