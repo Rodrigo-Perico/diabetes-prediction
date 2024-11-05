@@ -1,10 +1,26 @@
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .models import User
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib import messages
 from django.core.validators import RegexValidator
+from .ml_model import load_model
+import numpy as np
+import pickle
+
+def load_model():
+    with open('./moelos/diabetes_model.pkl', 'rb') as f:
+        model = pickle.load(f)
+    return model
+
+# Função para fazer a previsão
+def predict_diabetes(features):
+    model = load_model()  # Carrega o modelo uma vez
+    prediction = model.predict(features)
+    return prediction[0]  # Retorna a previsão (por exemplo, 0 ou 1)
+
+
 
 def home(request):
     # Exibe a página inicial index.html
@@ -133,4 +149,7 @@ def Consulta(request):
         return redirect('home')  # Nome da URL para redirecionar após o sucesso
     else:
         return render(request, 'Consulta.html')
+
+
+
 
