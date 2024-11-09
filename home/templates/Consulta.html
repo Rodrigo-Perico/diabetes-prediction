@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,113 +17,114 @@
         <div class="consulta-container">
             <h2>Formulário para Análise</h2>
             <br>
-            <form action="{% url 'consulta' %}" method="POST"> <!-- Alterado para chamar a URL da consulta -->
+            <form action="{% url 'consulta' %}" method="POST">
+                <!-- Alterado para chamar a URL da consulta -->
                 {% csrf_token %}
                 <div class="form-grid">
                     <div class="input-group">
                         <label for="pressao_alta">Pressão Alta</label>
-                        <select id="pressao_alta" name="pressao_alta" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="pressao_alta" name="pressao_alta" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="colesterol_alto">Colesterol Alto</label>
-                        <select id="colesterol_alto" name="colesterol_alto" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="colesterol_alto" name="colesterol_alto" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label for="checagem_colesterol">Checagem de colesterol</label>
+                        <label for="checagem_colesterol">Verificação de colesterol</label>
                         <select id="checagem_colesterol" name="checagem_colesterol" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="imc">IMC</label>
-                        <input type="text" id="imc" name="imc" required>
+                        <input type="text" id="imc" name="imc" obrigatório>
                     </div>
                     <div class="input-group">
                         <label for="fumante">Fumante</label>
-                        <select id="fumante" name="fumante" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="fumante" name="fumante" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="avc">AVC</label>
                         <select id="avc" name="avc" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                            <option value="">Selecionar</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="doencas_cardiacas">Doenças Cardíacas</label>
-                        <select id="doencas_cardiacas" name="doencas_cardiacas" required>
+                        <select id="doencas_cardiacas" name="doencas_cardiacas" obrigatório>
                             <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label for="atividades_fisicas">Atividades Físicas (últimos 30 Dias)</label>
-                        <select id="atividades_fisicas" name="atividades_fisicas" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <label for="atividades_fisicas">Atividades Físicas (últimos 30 dias)</label>
+                        <select id="atividades_fisicas" name="atividades_fisicas" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="consome_frutas">Consome Frutas</label>
-                        <select id="consome_frutas" name="consome_frutas" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="consome_frutas" name="consome_frutas" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="consome_vegetais">Consome Vegetais</label>
-                        <select id="consome_vegetais" name="consome_vegetais" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="consome_vegetais" name="consome_vegetais" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label for="alto_consumo_alcool">Alto consumo de Álcool</label>
-                        <select id="alto_consumo_alcool" name="alto_consumo_alcool" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <label for="alto_consumo_alcool">Alto consumo de álcool</label>
+                        <select id="alto_consumo_alcool" name="alto_consumo_alcool" obrigatório>
+                            <option value="">Selecionar</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="possui_convenio">Possui Convênio</label>
-                        <select id="possui_convenio" name="possui_convenio" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="possui_convenio" name="possui_convenio" obrigatório>
+                            <option value="">Selecionar</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="evitou_consultas">Evitou consultas por questões financeiras</label>
-                        <select id="evitou_consultas" name="evitou_consultas" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
+                        <select id="evitou_consultas" name="evitou_consultas" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="saude_geral">Saúde Geral</label>
-                        <select id="saude_geral" name="saude_geral" required>
-                            <option value="">Selecione</option>
+                        <select id="saude_geral" name="saude_geral" obrigatório>
+                            <option value="">Seleção</option>
                             <option value="1">Excelente</option>
                             <option value="2">Muito Boa</option>
                             <option value="3">Boa</option>
@@ -132,52 +132,82 @@
                             <option value="5">Ruim</option>
                         </select>
                     </div>
+                    
                     <div class="input-group">
-                        <label for="saude_mental">Saúde Mental</label>
-                        <select id="saude_mental" name="saude_mental" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
-                        </select>
+                        <label for="saude_mental" title="Saúde mental significa quantos dias você ficou ruim de cabeça no mês">Saúde Mental</label>
+                        <input id="saude_mental" name="saude_mental" type="number" min="0" max="30" require placeholder="Digite um número de 0 a 30" oninput="this.value = Math.min(30, Math.max(0, this.value))">
                     </div>
+                    
                     <div class="input-group">
-                        <label for="saude_fisica">Saúde Física</label>
-                        <select id="saude_fisica" name="saude_fisica" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
-                        </select>
+                        <label for="saude_fisica" title="Saúde física significa quantos dias você teve dificuldades físicas no mês">Saúde Física</label>
+                        <input id="saude_fisica" name="saude_fisica" type="number" min="0" max="30" require placeholder="Digite um número de 0 a 30" oninput="this.value = Math.min(30, Math.max(0, this.value))">
                     </div>
-                    <div class="input-group">
-                        <label for="dificuldade_andar">Dificuldade de Andar</label>
-                        <select id="dificuldade_andar" name="dificuldade_andar" required>
-                            <option value="">Selecione</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
-                        </select>
-                    </div>
+                    
                     <div class="input-group">
                         <label for="genero">Gênero</label>
-                        <select id="genero" name="genero" required>
-                            <option value="">Selecione</option>
+                        <select id="genero" name="genero" obrigatório>
+                            <option value="">Seleção</option>
                             <option value="0">Feminino</option>
                             <option value="1">Masculino</option>
                         </select>
                     </div>
+                    
                     <div class="input-group">
-                        <label for="idade">Idade</label>
-                        <input type="number" id="idade" name="idade" required>
+                        <label for="dificuldade_andar">Dificuldade de andar</label>
+                        <select id="dificuldade_andar" name="dificuldade_andar" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
+                        </select>
                     </div>
+                    
+                    <div class="input-group">
+                        <label for="idade" title="Idade deve ser entre 0 e 99 anos">Idade</label>
+                        <input type="number" id="idade" name="idade" min="0" max="99" require placeholder="Digite sua idade" inputmode="numeric" oninput="if(this.value < 0) this.value = 0; if(this.value > 99) this.value = 99;">
+                    </div>
+                    
                     <div class="input-group">
                         <label for="escolaridade">Escolaridade</label>
-                        <input type="text" id="escolaridade" name="escolaridade" required>
+                        <select id="escolaridade" name="escolaridade" obrigatório>
+                            <option value="">Seleção</option>
+                            <option value="1">Nunca frequentou a escola ou apenas educação infantil</option>
+                            <option value="2">Ensino Fundamental (1ª a 8ª série)</option>
+                            <option value="3">Ensino Médio incompleto (9ª a 11ª série)</option>
+                            <option value="4">Ensino Médio completo (Diploma de Ensino Médio ou Equivalente)</option>
+                            <option value="5">Cursou de 1 a 3 anos de faculdade (Algum tempo de faculdade ou escola técnica)</option>
+                            <option value="6">Cursou 4 anos ou mais de faculdade (Graduado)</option>
+                        </select>
                     </div>
+                    
                     <div class="input-group">
-                        <label for="renda">Renda</label>
-                        <input type="text" id="renda" name="renda" required>
+                        <label for="renda">Renda Mensal (em Reais)</label>
+                        <select id="renda" name="renda" obrigatória>
+                            <option value="1">Menos de R$4.166,67</option> <!-- Menos de R$50.000 / 12 -->
+                            <option value="2">De R$4.166,67 a menos de R$6.250,00</option> <!-- De R$50.000 a R$75.000 / 12 -->
+                            <option value="3">De R$6.250,00 a menos de R$8.333,33</option> <!-- De R$75.000 a R$100.000 / 12 -->
+                            <option value="4">De R$8.333,33 a menos de R$10.416,67</option> <!-- De R$100.000 a R$125.000 / 12 -->
+                            <option value="5">De R$10.416,67 a menos de R$14.583,33</option> <!-- De R$125.000 a R$175.000 / 12 -->
+                            <option value="6">De R$14.583,33 a menos de R$20.833,33</option> <!-- De R$175.000 a R$250.000 / 12 -->
+                            <option value="7">De R$20.833,33 a menos de R$31.250,00</option> <!-- De R$250.000 a R$375.000 / 12 -->
+                            <option value="8">R$31.250,00 ou mais</option> <!-- R$375.000 ou mais / 12 -->
+                        </select>
                     </div>
-                </div>
-                <button type="submit">Enviar</button>
+                    
+                    <!-- <div class ="input-group">
+                        <label for="renda">Renda</label>
+                        <select id="renda" name="renda" obrigatória>
+                            <option value="1">Menos de $10.000 </option>
+                            <option value="2">Menos de $15.000 (de $10.000 a menos de $15.000)</option>
+                            <option value="3">Menos de $20.000 (de $15.000 a menos de $20.000)</option>
+                            <option value="4">Menos de $25.000 (de US$ 20.000 a menos de US$ 25.000)</option>
+                            <option value="5">Menos de $35.000 (de $25.000 menos de US$ 35.000)</option>
+                            <option value="6">Menos de $50.000 (de $35.000 a menos de $50.000)</option>
+                            <option value="7">Menos de $75.000 (de $50.000 a menos de $75.000)</option>
+                            <option value="8">$75.000 ou mais</option>
+                        </select>
+                    </div> -->
+                    
+                    <button type="submit">Enviar</button>
             </form>
         </div>
     </div>

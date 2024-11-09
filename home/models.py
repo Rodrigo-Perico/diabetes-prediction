@@ -1,30 +1,59 @@
+from django.contrib.auth.models import User
 from django.db import models
+from .models import User  # substitua pelo caminho correto do seu User customizado
 
 class User(models.Model):
-    CRM = models.CharField(max_length=50)
+    CRM = models.CharField(max_length=50, primary_key=True)
     senha = models.CharField(max_length=16, default='')
-    
-    
+
+
 class Cadastro(models.Model):
-    # Campos do modelo
-    pressao_alta = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    colesterol_alto = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    checagem_colesterol = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
+    # Referência para o modelo User padrão do Django
+    CRM = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cadastros')
+
+    pressao_alta = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    colesterol_alto = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    checagem_colesterol = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     imc = models.FloatField()  # Índice de Massa Corporal
-    fumante = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    avc = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    doencas_cardiacas = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    atividades_fisicas = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    consome_frutas = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    consome_vegetais = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    alto_consumo_alcool = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    possui_convenio = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    evitou_consultas = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    saude_geral = models.IntegerField()  # Saúde Geral (número de 1 a 5, por exemplo)
-    saude_mental = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    saude_fisica = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    dificuldade_andar = models.CharField(max_length=3)  # Ex: "Sim" ou "Não"
-    genero = models.IntegerField()  # Gênero (0 para feminino, 1 para masculino)
-    idade = models.IntegerField()  # Idade
-    escolaridade = models.CharField(max_length=50)  # Escolaridade
-    renda = models.CharField(max_length=50)  # Renda"
+    fumante = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    avc = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    doencas_cardiacas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    atividades_fisicas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    consome_frutas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    consome_vegetais = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    alto_consumo_alcool = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    possui_convenio = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    evitou_consultas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    saude_geral = models.PositiveSmallIntegerField()  # Saúde Geral (ex: de 1 a 5)
+    saude_mental = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    saude_fisica = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    dificuldade_andar = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
+    genero = models.PositiveSmallIntegerField(choices=[(0, 'Feminino'), (1, 'Masculino')])
+
+    idade = models.PositiveSmallIntegerField(choices=[
+        (1, '18 a 24 anos'), (2, '25 a 29 anos'), (3, '30 a 34 anos'),
+        (4, '35 a 39 anos'), (5, '40 a 44 anos'), (6, '45 a 49 anos'),
+        (7, '50 a 54 anos'), (8, '55 a 59 anos'), (9, '60 a 64 anos'),
+        (10, '65 a 69 anos'), (11, '70 a 74 anos'), (12, '75 a 79 anos'),
+        (13, '80 a 99 anos'),
+    ])
+
+    escolaridade = models.PositiveSmallIntegerField(choices=[
+        (1, 'Nunca frequentou escola ou apenas jardim de infância'),
+        (2, '1ª a 8ª série (Ensino Fundamental)'),
+        (3, '9ª a 11ª série (Ensino Médio incompleto)'),
+        (4, '12ª série ou GED (Ensino Médio completo)'),
+        (5, '1 a 3 anos de faculdade (Alguns anos de faculdade ou curso técnico)'),
+        (6, '4 anos ou mais de faculdade (Diploma universitário)'),
+    ])
+
+    renda = models.PositiveSmallIntegerField(choices=[
+        (1, 'Menos de R$4.166,67'), (2, 'De R$4.166,67 a menos de R$6.250,00'),
+        (3, 'De R$6.250,00 a menos de R$8.333,33'), (4, 'De R$8.333,33 a menos de R$10.416,67'),
+        (5, 'De R$10.416,67 a menos de R$14.583,33'), (6, 'De R$14.583,33 a menos de R$20.833,33'),
+        (7, 'De R$20.833,33 a menos de R$31.250,00'), (8, 'R$31.250,00 ou mais'),
+    ])
+    
+    def save(self, *args, **kwargs):
+        """Sobrescreve o método save para garantir que a faixa etária seja salva corretamente"""
+        super(Cadastro, self).save(*args, **kwargs)  # Chama o método save original

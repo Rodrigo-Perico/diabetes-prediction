@@ -1,31 +1,29 @@
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
-from django.http import HttpResponse,JsonResponse
-from .models import User
+from django.http import HttpResponse, JsonResponse
+from .models import User, Cadastro
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib import messages
 from django.core.validators import RegexValidator
-from .ml_model import load_model
-import numpy as np
 import pickle
 
+# Função para carregar o modelo de diabetes
 def load_model():
-    with open('./moelos/diabetes_model.pkl', 'rb') as f:
+    with open('./modelos/diabetes_model.pkl', 'rb') as f:
         model = pickle.load(f)
     return model
 
-# Função para fazer a previsão
+# Função para fazer a previsão de diabetes
 def predict_diabetes(features):
     model = load_model()  # Carrega o modelo uma vez
     prediction = model.predict(features)
     return prediction[0]  # Retorna a previsão (por exemplo, 0 ou 1)
 
-
-
+# Exibe a página inicial
 def home(request):
-    # Exibe a página inicial index.html
     return render(request, 'index.html')
 
+# Validador de CRM
 validate_crm = RegexValidator(r'^[a-zA-Z0-9_]+$', 'O CRM deve conter apenas letras, números e underscores.')
 
 def cadastrar_usuario(request):
@@ -46,10 +44,12 @@ def cadastrar_usuario(request):
 
         hashed_password = make_password(senha)
 
-        user = User(CRM=CRM, senha=hashed_password)  # Presumindo que o campo continue a ser 'nome' no modelo
+        # Criação do usuário
+        user = User(CRM=CRM, senha=hashed_password)
         user.save()
         
-        return redirect('login')  # Nome da URL para redirecionar
+        messages.success(request, "Usuário cadastrado com sucesso!")
+        return redirect('login')  # Redireciona para a página de login
     else:
         return render(request, 'Cadastro.html')
 
@@ -60,29 +60,24 @@ def Login(request):
 
         # Tenta encontrar o usuário no banco de dados
         try:
-            user = User.objects.get(CRM=CRM)  # Presumindo que o campo continue a ser 'nome' no modelo
+            user = User.objects.get(CRM=CRM)
         except User.DoesNotExist:
-            messages.error(request, "Usuário não encontrado")
+            messages.error(request, "Usuário não encontrado.")
             return render(request, 'Login.html')
 
-        # Verifica se a senha fornecida corresponde à hash armazenada
+        # Verifica a senha
         if check_password(senha, user.senha):
-            return render(request, 'Consulta.html')
+            return render(request, 'Consulta.html')  # Redireciona para a consulta
         else:
             messages.error(request, "Senha incorreta!")
             return render(request, 'Login.html')
     else:
-        # Exibe a página de login Login.html
         return render(request, 'Login.html')
-
-from django.forms import ValidationError
-from django.shortcuts import redirect, render
-from django.contrib import messages
-from .models import Cadastro  # Importe seu modelo Cadastro
 
 def Consulta(request):
     if request.method == 'POST':
         # Obtenha os dados do formulário
+        CRM = request.POST.get('CRM')  # Supondo que o CRM também seja enviado no formulário
         pressao_alta = request.POST.get('pressao_alta')
         colesterol_alto = request.POST.get('colesterol_alto')
         checagem_colesterol = request.POST.get('checagem_colesterol')
@@ -119,8 +114,16 @@ def Consulta(request):
             messages.error(request, "IMC inválido.")
             return render(request, 'Consulta.html')
 
+        # Associando o usuário ao cadastro
+        try:
+            user = User.objects.get(CRM=CRM)  # Encontrando o usuário pelo CRM
+        except User.DoesNotExist:
+            messages.error(request, "Usuário não encontrado.")
+            return render(request, 'Consulta.html')
+
         # Criação e salvamento do objeto Cadastro
         cadastro = Cadastro(
+            user=user,  # Associa o cadastro ao usuário
             pressao_alta=pressao_alta,
             colesterol_alto=colesterol_alto,
             checagem_colesterol=checagem_colesterol,
@@ -143,13 +146,13 @@ def Consulta(request):
             escolaridade=escolaridade,
             renda=renda
         )
-        cadastro.save()  # Salva o cadastro no banco de dados
-
-        messages.success(request, "Cadastro realizado com sucesso!")
-        return redirect('home')  # Nome da URL para redirecionar após o sucesso
-    else:
-        return render(request, 'Consulta.html')
-
-
-
-
+        
+        try:
+            cadastro.save()  # Salva o cadastro
+            messages.success(request, "Cadastro realizado com sucesso!")
+            return redirect('home')
+        except Exception as e:
+            messages.error(request, f"Erro ao salvar o cadastro: {e}")
+            return render(request, 'Consulta.html')
+    
+    return render(request, 'Consulta.html')
