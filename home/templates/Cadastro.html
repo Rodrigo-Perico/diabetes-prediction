@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,8 +19,8 @@
             <h2>Cadastro</h2>
             <form action="{% url 'cadastro' %}" method="POST">
                 {% csrf_token %}
-                <input type="text" name="CRM" placeholder="CRM">
-                <input type="password" name="senha" placeholder="Senha">
+                <input type="number" name="CRM" placeholder="CRM" required >
+                <input type="password" name="senha" placeholder="Senha" required>
                 <input type="submit" value="Cadastrar">
                 {% if messages %}
                 <ul>

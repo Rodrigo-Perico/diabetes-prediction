@@ -19,7 +19,7 @@
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 <label for="nome">CRM:</label>
-                <input type="text" name="CRM" required><br><br>
+                <input type="number" name="CRM" required><br><br>
                 
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" required><br><br>

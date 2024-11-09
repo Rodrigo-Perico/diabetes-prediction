@@ -1,20 +1,19 @@
-from django.contrib.auth.models import User
 from django.db import models
-from .models import User  # substitua pelo caminho correto do seu User customizado
 
 class User(models.Model):
     CRM = models.CharField(max_length=50, primary_key=True)
     senha = models.CharField(max_length=16, default='')
 
+    def __str__(self):
+        return self.CRM
+
 
 class Cadastro(models.Model):
-    # Referência para o modelo User padrão do Django
-    CRM = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cadastros')
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cadastros')
     pressao_alta = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     colesterol_alto = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     checagem_colesterol = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
-    imc = models.FloatField()  # Índice de Massa Corporal
+    imc = models.FloatField()
     fumante = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     avc = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     doencas_cardiacas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
@@ -24,12 +23,11 @@ class Cadastro(models.Model):
     alto_consumo_alcool = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     possui_convenio = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     evitou_consultas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
-    saude_geral = models.PositiveSmallIntegerField()  # Saúde Geral (ex: de 1 a 5)
+    saude_geral = models.PositiveSmallIntegerField()
     saude_mental = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     saude_fisica = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     dificuldade_andar = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     genero = models.PositiveSmallIntegerField(choices=[(0, 'Feminino'), (1, 'Masculino')])
-
     idade = models.PositiveSmallIntegerField(choices=[
         (1, '18 a 24 anos'), (2, '25 a 29 anos'), (3, '30 a 34 anos'),
         (4, '35 a 39 anos'), (5, '40 a 44 anos'), (6, '45 a 49 anos'),
@@ -37,7 +35,6 @@ class Cadastro(models.Model):
         (10, '65 a 69 anos'), (11, '70 a 74 anos'), (12, '75 a 79 anos'),
         (13, '80 a 99 anos'),
     ])
-
     escolaridade = models.PositiveSmallIntegerField(choices=[
         (1, 'Nunca frequentou escola ou apenas jardim de infância'),
         (2, '1ª a 8ª série (Ensino Fundamental)'),
@@ -46,14 +43,12 @@ class Cadastro(models.Model):
         (5, '1 a 3 anos de faculdade (Alguns anos de faculdade ou curso técnico)'),
         (6, '4 anos ou mais de faculdade (Diploma universitário)'),
     ])
-
     renda = models.PositiveSmallIntegerField(choices=[
         (1, 'Menos de R$4.166,67'), (2, 'De R$4.166,67 a menos de R$6.250,00'),
         (3, 'De R$6.250,00 a menos de R$8.333,33'), (4, 'De R$8.333,33 a menos de R$10.416,67'),
         (5, 'De R$10.416,67 a menos de R$14.583,33'), (6, 'De R$14.583,33 a menos de R$20.833,33'),
         (7, 'De R$20.833,33 a menos de R$31.250,00'), (8, 'R$31.250,00 ou mais'),
     ])
-    
-    def save(self, *args, **kwargs):
-        """Sobrescreve o método save para garantir que a faixa etária seja salva corretamente"""
-        super(Cadastro, self).save(*args, **kwargs)  # Chama o método save original
+
+    def __str__(self):
+        return f"Consulta de {self.user.CRM}"

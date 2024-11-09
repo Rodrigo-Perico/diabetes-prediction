@@ -127,9 +127,4 @@ STATICFILES_DIRS = [BASE_DIR / "home/static"]  # Ajuste conforme necessário
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
-]
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Ou o diretório que você deseja usar
-]
+
