@@ -10,10 +10,11 @@ class User(models.Model):
 
 class Cadastro(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cadastros')
+    predict = models.PositiveSmallIntegerField(null=True, blank=True)
     pressao_alta = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     colesterol_alto = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     checagem_colesterol = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
-    imc = models.FloatField()
+    imc = models.PositiveSmallIntegerField()
     fumante = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     avc = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     doencas_cardiacas = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
@@ -49,6 +50,8 @@ class Cadastro(models.Model):
         (5, 'De R$10.416,67 a menos de R$14.583,33'), (6, 'De R$14.583,33 a menos de R$20.833,33'),
         (7, 'De R$20.833,33 a menos de R$31.250,00'), (8, 'R$31.250,00 ou mais'),
     ])
+
+    
 
     def __str__(self):
         return f"Consulta de {self.user.CRM}"
