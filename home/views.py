@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse
@@ -8,14 +9,12 @@ from django.core.validators import RegexValidator
 import pickle  
 import pandas as pd
 import sklearn
-import win32api
-
-
 
 def load_model():
-    with open('home\modelos\modelo_logistic.pkl', 'rb') as f:
-        model = pickle.load(f)
-    return model
+    # Usando barras normais
+    with open('home/modelos/modelo_logistic.pkl', 'rb') as f:
+        modelo = pickle.load(f)
+    return modelo
 
 def predict_diabetes(features):
     model = load_model()
@@ -26,6 +25,9 @@ validate_crm = RegexValidator(r'^[a-zA-Z0-9_]+$', 'O CRM deve conter apenas letr
 
 def home(request):
     return render(request, './home/index.html')
+
+def Painel(request):
+    return render(request, './home/Painel.html')
 
 def cadastrar_usuario(request):
     if request.method == 'POST':
@@ -70,7 +72,6 @@ def Login(request):
             return redirect('consulta')
         else:
             messages.error(request, "CRM ou senha incorreta!")
-            return render(request, 'Login.html')
     return render(request, './home/Login.html')
 
 def Consulta(request):
@@ -121,11 +122,8 @@ def Consulta(request):
 
             print(prediction)
         
+            # Tratamento da data para garantir que esteja no formato correto
 
-            # Chamada da função de predição
-            #prediction = predict_diabetes([features])
-
-            # print(prediction)
 
             # Salvar cadastro no banco de dados
             cadastro = Cadastro(
@@ -151,7 +149,9 @@ def Consulta(request):
                 idade=request.POST.get('idade'),
                 escolaridade=request.POST.get('escolaridade'),
                 renda=request.POST.get('renda'),
-                predict= int(prediction)
+                predict=int(prediction),
+                cpf=request.POST.get('cpf'),
+                data_predicao= request.POST.get('data_predicao')
             )
             cadastro.save()
 

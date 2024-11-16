@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="{% static 'home/css/Consulta.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
-</head>
+    <script src="{% static 'js/Consulta.js' %}"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/cpf-cnpj-validator@3.0.0/dist/index.min.js"></script> <!-- Incluindo a biblioteca -->
+
+    </head>
 <body>
     <div class="container">
         <div class="header">
@@ -22,6 +25,19 @@
                 <!-- Alterado para chamar a URL da consulta -->
                 {% csrf_token %}
                 <div class="form-grid">
+                    <div class="input-group">
+                        <label for="nome">Nome do Paciente</label>
+                        <input type="text" id="nome" name="nome" min="0" max="30" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="cpf">CPF do Paciente</label>
+                        <input type="text" id="cpf" name="cpf" maxlength="11" minlength="11" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="data_predicao">Data da predição</label>
+                        <input type="text" id="data_predicao" name="data_predicao" placeholder="DD/MM/AAAA" required maxlength="10" pattern="\d{2}/\d{2}/\d{4}" title="Data no formato DD/MM/AAAA">
+                    </div>
+                    
                     <div class="input-group">
                         <label for="pressao_alta">Pressão Alta</label>
                         <select id="pressao_alta" name="pressao_alta" obrigatório>
@@ -46,13 +62,16 @@
                             <option value="0">Não</option>
                         </select>
                     </div>
+
                     <div class="input-group">
                         <label for="imc">IMC</label>
-                        <input type="text" id="imc" name="imc" obrigatório>
+                        <input type="number" id="imc" name="imc" min="0" max="99" required 
+                            oninput="if(this.value < 0) this.value = 0; if(this.value > 99) this.value = 110;">
                     </div>
+                    
                     <div class="input-group">
                         <label for="fumante">Fumante</label>
-                        <select id="fumante" name="fumante" obrigatório>
+                        <select id="fumante" name="fumante" required>
                             <option value="">Seleção</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -68,7 +87,7 @@
                     </div>
                     <div class="input-group">
                         <label for="doencas_cardiacas">Doenças Cardíacas</label>
-                        <select id="doencas_cardiacas" name="doencas_cardiacas" obrigatório>
+                        <select id="doencas_cardiacas" name="doencas_cardiacas" required>
                             <option value="">Selecione</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -136,12 +155,12 @@
                     
                     <div class="input-group">
                         <label for="saude_mental" title="Saúde mental significa quantos dias você ficou ruim de cabeça no mês">Saúde Mental</label>
-                        <input id="saude_mental" name="saude_mental" type="number" min="0" max="30" require placeholder="Digite um número de 0 a 30" oninput="this.value = Math.min(30, Math.max(0, this.value))">
+                        <input id="saude_mental" name="saude_mental" type="number" min="0" max="30" require placeholder="Digite um número de 0 a 30" oninput="this.value = Math.min(30, Math.max(0, this.value))" required>
                     </div>
                     
                     <div class="input-group">
                         <label for="saude_fisica" title="Saúde física significa quantos dias você teve dificuldades físicas no mês">Saúde Física</label>
-                        <input id="saude_fisica" name="saude_fisica" type="number" min="0" max="30" require placeholder="Digite um número de 0 a 30" oninput="this.value = Math.min(30, Math.max(0, this.value))">
+                        <input id="saude_fisica" name="saude_fisica" type="number" min="0" max="30" require placeholder="Digite um número de 0 a 30" oninput="this.value = Math.min(30, Math.max(0, this.value))" required>
                     </div>
                     
                     <div class="input-group">
@@ -164,7 +183,7 @@
                     
                     <div class="input-group">
                         <label for="idade" title="Idade deve ser entre 0 e 99 anos">Idade</label>
-                        <input type="number" id="idade" name="idade" min="0" max="99" require placeholder="Digite sua idade" inputmode="numeric" oninput="if(this.value < 0) this.value = 0; if(this.value > 99) this.value = 99;">
+                        <input type="number" id="idade" name="idade" min="0" max="99" require placeholder="Digite sua idade" inputmode="numeric" oninput="if(this.value < 0) this.value = 0; if(this.value > 99) this.value = 99;" required>
                     </div>
                     
                     <div class="input-group">

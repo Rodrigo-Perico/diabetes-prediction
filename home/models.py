@@ -9,6 +9,7 @@ class User(models.Model):
 
 
 class Cadastro(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cadastros')
     predict = models.PositiveSmallIntegerField(null=True, blank=True)
     pressao_alta = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
@@ -29,6 +30,9 @@ class Cadastro(models.Model):
     saude_fisica = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     dificuldade_andar = models.PositiveSmallIntegerField(choices=[(0, 'Não'), (1, 'Sim')])
     genero = models.PositiveSmallIntegerField(choices=[(0, 'Feminino'), (1, 'Masculino')])
+    cpf = models.TextField(max_length=11, unique = True)
+
+    data_predicao = models.TextField() 
     idade = models.PositiveSmallIntegerField(choices=[
         (1, '18 a 24 anos'), (2, '25 a 29 anos'), (3, '30 a 34 anos'),
         (4, '35 a 39 anos'), (5, '40 a 44 anos'), (6, '45 a 49 anos'),
@@ -50,6 +54,8 @@ class Cadastro(models.Model):
         (5, 'De R$10.416,67 a menos de R$14.583,33'), (6, 'De R$14.583,33 a menos de R$20.833,33'),
         (7, 'De R$20.833,33 a menos de R$31.250,00'), (8, 'R$31.250,00 ou mais'),
     ])
+
+    
 
     
 
