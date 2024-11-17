@@ -7,45 +7,48 @@ Este é um projeto de previsão de diabetes desenvolvido com Django.
 ## **Como configurar o ambiente de desenvolvimento**
 
 1. Clone o repositório:
-   ```bash
+   ```yaml
    git clone https://github.com/Rodrigo-Perico/diabetes-prediction/
    cd diabetes-prediction
-Abra o projeto no VS Code:
+   ```
 
-Navegue até a pasta do projeto: File -> Open Folder -> Localize a pasta do projeto (exemplo: Disco Local (C:) -> Usuários -> Seu Usuário -> diabetes-prediction).
-Crie um ambiente virtual:
+2. Abra o projeto no VS Code:
+   - Navegue até a pasta do projeto:
+     **File -> Open Folder -> Localize a pasta do projeto** (exemplo: Disco Local (C:) -> Usuários -> Seu Usuário -> diabetes-prediction).
 
-bash
-Copiar código
-python -m venv venv
-Ative o ambiente virtual:
+3. Crie um ambiente virtual:
+   ```yaml
+   python -m venv venv
+   ```
 
-Windows:
-bash
-Copiar código
-venv\Scripts\activate
-Linux/MacOS:
-bash
-Copiar código
-source venv/bin/activate
-Instale as extensões recomendadas no VS Code:
+4. Ative o ambiente virtual:
+   - **Windows**:
+     ```yaml
+     venv\Scripts\activate
+     ```
+   - **Linux/MacOS**:
+     ```yaml
+     source venv/bin/activate
+     ```
 
-SQLite Viewer (para visualizar bancos de dados SQLite).
-Instale as dependências do projeto:
+5. Instale as extensões recomendadas no VS Code:
+   - Instale **SQLite Viewer** (para visualizar bancos de dados SQLite).
 
-bash
-Copiar código
-pip install django
-pip install pickle
-Configure o banco de dados:
+6. Instale as dependências do projeto:
+   ```yaml
+   pip install django
+   pip install pickle
+   ```
 
-bash
-Copiar código
-python manage.py makemigrations
-python manage.py migrate
-Execute o servidor de desenvolvimento:
+7. Configure o banco de dados:
+   ```yaml
+   python manage.py makemigrations
+   python.manage.py migrate
+   ```
 
-bash
-Copiar código
-python manage.py runserver
-Acesse no navegador: http://127.0.0.1:8000
+8. Execute o servidor de desenvolvimento:
+   ```yaml
+   python manage.py runserver
+   ```
+
+   Acesse no navegador: **http://127.0.0.1:8000**
