@@ -20,7 +20,7 @@
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 <label for="nome">CRM:</label>
-                <input type="number" name="CRM" required><br><br>
+                <input type="text" name="CRM" placeholder="CRM" max="9999999999" oninput="this.value = this.value.slice(0, 10)" required><br><br>
                 
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" required><br><br>

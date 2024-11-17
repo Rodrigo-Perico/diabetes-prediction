@@ -9,17 +9,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
     <script src="{% static 'js/Consulta.js' %}"></script>   
-    <script src="https://cdn.jsdelivr.net/npm/cpf-cnpj-validator@3.0.0/dist/index.min.js"></script> <!-- Incluindo a biblioteca -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/cpf-cnpj-validator@3.0.0/dist/index.min.js"></script> <!-- Incluindo a biblioteca -->
 
     </head>
 <body>
+    
     <div class="container">
         <div class="header">
             <i class="fas fa-user-md medical-icon"></i>
             <h1>Diabetes AI</h1>
         </div>
+
         <div class="consulta-container">
             <h2>Formulário para Análise</h2>
+
+            {% if mensagem %}
+                <div class="alert {% if mensagem == 'Positivo' %}alert-positive{% else %}alert-negative{% endif %}">
+                    {{ mensagem }}
+                </div>
+            {% endif %}
+
+
             <br>
             <form action="{% url 'consulta' %}" method="POST">
                 <!-- Alterado para chamar a URL da consulta -->
@@ -95,7 +105,7 @@
                     </div>
                     <div class="input-group">
                         <label for="atividades_fisicas">Atividades Físicas (últimos 30 dias)</label>
-                        <select id="atividades_fisicas" name="atividades_fisicas" obrigatório>
+                        <select id="atividades_fisicas" name="atividades_fisicas" required>
                             <option value="">Seleção</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -103,7 +113,7 @@
                     </div>
                     <div class="input-group">
                         <label for="consome_frutas">Consome Frutas</label>
-                        <select id="consome_frutas" name="consome_frutas" obrigatório>
+                        <select id="consome_frutas" name="consome_frutas" required>
                             <option value="">Seleção</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -111,7 +121,7 @@
                     </div>
                     <div class="input-group">
                         <label for="consome_vegetais">Consome Vegetais</label>
-                        <select id="consome_vegetais" name="consome_vegetais" obrigatório>
+                        <select id="consome_vegetais" name="consome_vegetais" required>
                             <option value="">Seleção</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -119,7 +129,7 @@
                     </div>
                     <div class="input-group">
                         <label for="alto_consumo_alcool">Alto consumo de álcool</label>
-                        <select id="alto_consumo_alcool" name="alto_consumo_alcool" obrigatório>
+                        <select id="alto_consumo_alcool" name="alto_consumo_alcool" required>
                             <option value="">Selecionar</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -127,7 +137,7 @@
                     </div>
                     <div class="input-group">
                         <label for="possui_convenio">Possui Convênio</label>
-                        <select id="possui_convenio" name="possui_convenio" obrigatório>
+                        <select id="possui_convenio" name="possui_convenio" required>
                             <option value="">Selecionar</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -135,7 +145,7 @@
                     </div>
                     <div class="input-group">
                         <label for="evitou_consultas">Evitou consultas por questões financeiras</label>
-                        <select id="evitou_consultas" name="evitou_consultas" obrigatório>
+                        <select id="evitou_consultas" name="evitou_consultas" required>
                             <option value="">Seleção</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -143,7 +153,7 @@
                     </div>
                     <div class="input-group">
                         <label for="saude_geral">Saúde Geral</label>
-                        <select id="saude_geral" name="saude_geral" obrigatório>
+                        <select id="saude_geral" name="saude_geral" required>
                             <option value="">Seleção</option>
                             <option value="1">Excelente</option>
                             <option value="2">Muito Boa</option>
@@ -174,7 +184,7 @@
                     
                     <div class="input-group">
                         <label for="dificuldade_andar">Dificuldade de andar</label>
-                        <select id="dificuldade_andar" name="dificuldade_andar" obrigatório>
+                        <select id="dificuldade_andar" name="dificuldade_andar" required>
                             <option value="">Seleção</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -188,7 +198,7 @@
                     
                     <div class="input-group">
                         <label for="escolaridade">Escolaridade</label>
-                        <select id="escolaridade" name="escolaridade" obrigatório>
+                        <select id="escolaridade" name="escolaridade" required>
                             <option value="">Seleção</option>
                             <option value="1">Nunca frequentou a escola ou apenas educação infantil</option>
                             <option value="2">Ensino Fundamental (1ª a 8ª série)</option>
@@ -201,7 +211,7 @@
                     
                     <div class="input-group">
                         <label for="renda">Renda Mensal (em Reais)</label>
-                        <select id="renda" name="renda" obrigatória>
+                        <select id="renda" name="renda" required>
                             <option value="1">Menos de R$4.166,67</option> <!-- Menos de R$50.000 / 12 -->
                             <option value="2">De R$4.166,67 a menos de R$6.250,00</option> <!-- De R$50.000 a R$75.000 / 12 -->
                             <option value="3">De R$6.250,00 a menos de R$8.333,33</option> <!-- De R$75.000 a R$100.000 / 12 -->
@@ -230,6 +240,11 @@
                     <button type="submit">Enviar</button>
             </form>
         </div>
+        
+        
     </div>
+    
+
+        
 </body>
 </html>

@@ -20,15 +20,28 @@
             <h2>Cadastro</h2>
             <form action="{% url 'cadastro' %}" method="POST">
                 {% csrf_token %}
-                <input type="number" name="CRM" placeholder="CRM" required >
-                <input type="password" name="senha" placeholder="Senha" required>
+                
+                <!-- Descrição e Campo CRM -->
+                <label for="CRM">CRM:</label><br>
+                <input type="text" id="CRM" name="CRM" placeholder="123456-SP" maxlength="10" 
+                    oninput="this.value = this.value.slice(0, 10)" required>
+                <br><br>
+                
+                <!-- Descrição e Campo Senha -->
+                <label for="senha">Senha:</label><br>
+                <input type="password" id="senha" name="senha" placeholder="Senha" maxlength="10" minlength="6" required>
+                <br><br>
+                
+                <!-- Botão de envio -->
                 <input type="submit" value="Cadastrar">
+                
+                <!-- Exibição de mensagens -->
                 {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
                 {% endif %}
             </form>
             <p>Já possui uma conta? <a href="{% url 'login' %}">Login</a></p>

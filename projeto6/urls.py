@@ -27,5 +27,6 @@ urlpatterns = [
     path('login/' , views.Login, name='login'),
     path('Consulta/' , views.Consulta, name='consulta'),
     path('Painel/' , views.Painel, name='painel'),
+#path('consulta_historico/', views.consulta_historico, name='consulta_historico'),
 
 ]

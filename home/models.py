@@ -1,8 +1,8 @@
 from django.db import models
 
 class User(models.Model):
-    CRM = models.CharField(max_length=50, primary_key=True)
-    senha = models.CharField(max_length=16, default='')
+    CRM = models.CharField(max_length=10, primary_key=True)
+    senha = models.CharField(max_length=20, default='')
 
     def __str__(self):
         return self.CRM
@@ -55,9 +55,37 @@ class Cadastro(models.Model):
         (7, 'De R$20.833,33 a menos de R$31.250,00'), (8, 'R$31.250,00 ou mais'),
     ])
 
-    
 
     
 
     def __str__(self):
         return f"Consulta de {self.user.CRM}"
+
+
+ #CRIAR TABELA DE PREDIÇÃO DE MODO A SALVAR INFORMAÇÕES DE TUDO!
+from django.db import models
+
+"""
+# Modelo para armazenar informações de predições
+class Predicao(models.Model):
+    crm_medico = models.CharField(max_length=50)  # CRM do médico (sem ser primary_key aqui)
+    cpf_paciente = models.CharField(max_length=11)  # CPF do paciente
+    data_predicao = models.CharField(max_length=10)  # Data da predição (melhor usar DateField se possível)
+    nome_paciente = models.CharField(max_length=50)  # Nome do paciente
+    modelo = models.CharField(max_length=20)  # Nome do modelo de IA usado
+    predict = models.PositiveSmallIntegerField(null=True, blank=True)  # Resultado da predição (ex.: 0 ou 1)
+    metricas = 
+
+    # Relacionamento com outro modelo (Exemplo: médico)
+    cpf_paciente_fk = models.ForeignKey(
+        'Consulta',  # Supondo que você tenha uma tabela chamada 'Medico'
+        on_delete=models.CASCADE,  # Apaga as predições se o médico for deletado
+        related_name='predicoes',  # Nome reverso para consultas
+    )
+
+    def __str__(self):
+        return f'Predição para {self.nome_paciente} pelo médico {self.crm_medico}'
+
+"""
+
+

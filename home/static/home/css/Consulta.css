@@ -135,6 +135,24 @@ p a:hover {
     color: #0056b3; 
 }
 
+.alert {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+.alert-positive {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-negative {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     .consulta-container {

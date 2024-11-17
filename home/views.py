@@ -10,6 +10,7 @@ import pickle
 import pandas as pd
 import sklearn
 
+
 def load_model():
     # Usando barras normais
     with open('home/modelos/modelo_logistic.pkl', 'rb') as f:
@@ -21,7 +22,10 @@ def predict_diabetes(features):
     prediction = model.predict(features)
     return prediction[0]
 
-validate_crm = RegexValidator(r'^[a-zA-Z0-9_]+$', 'O CRM deve conter apenas letras, números e underscores.')
+validate_crm = RegexValidator(
+    r'^\d{4,6}-[A-Za-z]{2}$', 
+    'O CRM deve conter de 4 a 6 dígitos seguidos por um hífen e a sigla do estado (ex: 12345-SP).'
+)
 
 def home(request):
     return render(request, './home/index.html')
@@ -45,7 +49,7 @@ def cadastrar_usuario(request):
             return render(request, './home/Cadastro.html')
 
         if User.objects.filter(CRM=CRM).exists():
-            messages.error(request, "Este CRM já está registrado.")
+            messages.error(request, "Este CRM já está registrado.") # Enumeração de usuários, o ideal é não informar.
             return render(request, './home/Cadastro.html')
 
         hashed_password = make_password(senha)
@@ -75,6 +79,11 @@ def Login(request):
     return render(request, './home/Login.html')
 
 def Consulta(request):
+    CRM = request.session.get('user_crm')
+    if not CRM:
+        messages.error(request, "Você tentou acessar a área de consulta sem estar autenticado. Por favor, faça login para continuar.")
+        return redirect('login')
+
     if request.method == 'POST':
         CRM = request.session.get('user_crm')
         if not CRM:
@@ -154,16 +163,55 @@ def Consulta(request):
                 data_predicao= request.POST.get('data_predicao')
             )
             cadastro.save()
-
+            mensagem = ""
             # Exibir resultado da predição
             if prediction == 1:
-                messages.success(request, "O modelo previu que o paciente pode ter diabetes.")
+                mensagem = 'Dado os dados, a predição de diabetes é POSITIVA !'
+                          
+                return render(request, './home/Consulta.html', {'mensagem': mensagem})
             else:
-                messages.success(request, "O modelo previu que o paciente não tem diabetes.")
-                    
+                mensagem = 'Dado os dados, a predição de diabetes é NEGATIVA !'
+                return render(request, './home/Consulta.html', {'mensagem': mensagem})
         except Exception as e:
-            print(e)
-            messages.error(request, f"Erro ao salvar o cadastro ou realizar a predição: {e}")
             return render(request, './home/Consulta.html')
     
     return render(request, './home/Consulta.html')
+    
+
+
+"""
+def consulta_historico(request):
+    form_type = request.POST.get()
+    if request.method == 'POST':
+        # Captura o valor do CPF enviado pelo formulário
+        cpf_consulta = request.POST.get('cpf_consulta')
+
+        try:
+            if Cadastro.objects.filter(cpf=cpf_consulta).exists():
+
+                cadastro = Cadastro.objects.filter(cpf=cpf_consulta).first()
+                return render(request, './home/consulta_cpf.html', {'cadastro': cadastro})
+        
+
+        except Exception as e:
+        # Verifica se o CPF foi enviado
+            if not cpf_consulta:
+                return HttpResponse("Por favor, insira o CPF.")
+            
+            # Verifique se o CPF tem 11 dígitos (validação básica)
+            if len(cpf_consulta) != 11 or not cpf_consulta.isdigit():
+                return HttpResponse("CPF inválido. Certifique-se de que ele possui 11 números.")
+            
+            # Aqui você pode realizar uma consulta no banco de dados ou outro processamento
+            # Por exemplo:
+            # paciente = Paciente.objects.filter(cpf=cpf_consulta).first()
+            
+            # Para fins de exemplo, consideramos que a consulta foi bem-sucedida:
+            return HttpResponse(f"Consulta realizada com sucesso para o CPF: {e}")
+        
+    
+    # Renderiza o formulário em caso de requisição GET
+    return render(request,'./home/consulta_cpf.html')
+
+    """
+    
