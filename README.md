@@ -1,6 +1,6 @@
 # Diabetes Prediction
 
-Este é um projeto de previsão de diabetes desenvolvido com Django.
+projeto de previsão de diabetes desenvolvid com Django e Machine Learning
 
 ---
 
