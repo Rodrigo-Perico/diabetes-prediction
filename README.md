@@ -38,6 +38,8 @@ projeto de previsão de diabetes desenvolvid com Django e Machine Learning
    ```yaml
    pip install django
    pip install pickle
+   pip install scikit-learn
+   pip install pandas
    ```
 
 7. Configure o banco de dados:
