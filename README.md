@@ -43,7 +43,7 @@ projeto de previsão de diabetes desenvolvid com Django e Machine Learning
 7. Configure o banco de dados:
    ```yaml
    python manage.py makemigrations
-   python.manage.py migrate
+   python manage.py migrate
    ```
 
 8. Execute o servidor de desenvolvimento:
