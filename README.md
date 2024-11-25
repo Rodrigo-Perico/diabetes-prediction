@@ -53,4 +53,4 @@ projeto de previsão de diabetes desenvolvid com Django e Machine Learning
    python manage.py runserver
    ```
 
-   Acesse no navegador: **http://127.0.0.1:8000**
+   Acesse o navegador: **http://127.0.0.1:8000**
