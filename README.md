@@ -48,7 +48,7 @@ projeto de previsão de diabetes desenvolvid com Django e Machine Learning
    python manage.py migrate
    ```
 
-8. Execute o servidor de desenvolvimento:
+8. Execute o servidor:
    ```yaml
    python manage.py runserver
    ```
