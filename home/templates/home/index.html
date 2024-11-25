@@ -1,46 +1,48 @@
-<!DOCTYPE html>
 {% load static %}
-
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage - Sistema Médico</title>
-    <link rel="stylesheet" href="{% static 'home/css/styles.css' %}"> <!-- Link para o CSS, se necessário -->
+    <title>Homepage Profissional</title>
+    <link rel="stylesheet" href="{% static 'home/css/styles.css' %}">
     <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Cabeçalho -->
-        <header class="header">
-            <i class="fas fa-user-md medical-icon"></i> <!-- Ícone de médico -->
-            <h1>Bem-vindo ao Diabetes AI</h1>
-            <p>Sua saúde é nossa prioridade. Aqui você encontra ferramentas para análise de saúde e acompanhamento médico.</p>
+    <!-- Header -->
+    <header class="header">
+        
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'home/img/logo.png' %}" alt="Logo do Sistema">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Início</a></li>
+                    <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
         </header>
 
-        <!-- Seção de navegação com links -->
-        <div class="nav-links">
-            <a href="{% url 'cadastro' %}" class="nav-link">Cadastro</a>
-            <a href="{% url 'login' %}" class="nav-link">Login</a>
-        </div>
-        
-        <!-- Seção principal da página inicial -->
-        <main class="main-content">
-            <section class="feature">
-                <h2>Sobre o Sistema</h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit eaque voluptatem molestiae consequatur, sequi veniam libero velit ad officia unde quidem magni beatae esse laudantium rem reiciendis voluptatibus quia. Unde!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, ex a laborum error eos voluptatibus praesentium tenetur! Libero cumque rerum est incidunt dolorum quod et, dolores voluptas aspernatur, corporis ratione.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure rem quae tenetur harum consequatur est eos dolorem officiis, similique voluptates porro laboriosam quisquam aperiam, perspiciatis et libero nam in error. </p>
-            </section>
-
-            
+        <!-- Main Content -->
+        <main class="main">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Bem-vindo ao Sistema Médico</h1>
+                    <p>Gerencie seus pacientes e consultas de maneira fácil e eficiente.</p>
+                    <a href="{% url 'cadastro' %}" class="btn">Comece Agora</a>
+                </div>
+            </div>
         </main>
-
-        <!-- Rodapé -->
-        <footer class="footer">
-            <p>&copy; 2024 Diabetes AI. Todos os direitos reservados.</p>
-        </footer>
-    </div>
+        
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Sistema Médico. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
