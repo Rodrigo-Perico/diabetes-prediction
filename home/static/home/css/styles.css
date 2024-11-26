@@ -14,6 +14,8 @@ body {
     box-sizing: border-box;
 }
 
+
+
 /* Header */
 .header {
     background-color: #004080;
@@ -25,9 +27,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 100vw;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+#logo{
+    color: white;
+    margin-left: 1vw;
 }
 
 .logo img {
@@ -36,20 +43,21 @@ body {
 
 .nav
 {
-    margin-left: 190px;
+    margin-left: 10vw;
 }
 
 .nav ul {
     display: flex;
     list-style: none;
     gap: 20px;
+    margin-left: 25vw;
 }
 
 .nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 1vh 1vw;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -64,7 +72,7 @@ body {
     background-size: cover;
     background-position: top;
     text-align: center;
-    padding: 100px 20px;
+    padding: 10px 10px;
     color: white;
     background-color: rgba(0, 0, 0, 0.723);
     background-blend-mode: overlay;
@@ -78,28 +86,99 @@ body {
     margin: 0 auto;
 }
 
+.highlight {
+    color: blue;
+}
+
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 7vh;
+    font-size: 5vw;
+    text-shadow: 2px 2px 5px rgb(14, 14, 14);
+    font-family:Arial, Helvetica, sans-serif;
+    align-items: center;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    text-align:left;
+    font-size: 7vh;
     margin-bottom: 30px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 5px rgba(4, 0, 255, 0.5);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .hero .btn {
     display: inline-block;
     background-color: #0066cc;
+    margin-top: 20px;
     color: white;
-    padding: 15px 30px;
+    padding: 3vw 7vh;
     text-decoration: none;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 15px;
     transition: background-color 0.3s;
 }
+
+
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .button:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+  .button:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.164);
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  .button:hover {
+    color: #fff;
+  }
+  .button:hover:before {
+    width: 100%;
+  }
+  
+  
+  /* optional reset for presentation */
+  
+  .container {
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  
+  a{
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+
+
 
 .hero .btn:hover {
     background-color: #004080;
@@ -110,7 +189,7 @@ body {
     background-color: #004080;
     color: white;
     text-align: center;
-    padding: 10px 20px;
+    padding: 0px 0px;
     margin-top: 0px;
 }
 
@@ -118,19 +197,50 @@ body {
     font-size: 0.9rem;
 }
 
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 2rem;
     }
 
     .hero p {
-        font-size: 1rem;
+    }
+    .nav{
+        margin-bottom: 10vh;
+        margin-right: 30vw;
     }
 
-    .nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+    li a[href="{% url 'home' %}"] {
+        display: none;
     }
+    
+
+    .nav ul {
+        flex-direction: row;
+        align-items: center;
+        margin-right: 2vw;
+        gap: 10px;
+        font-size: 20px;
+         /* Removido "margin-" que estava incompleto */
+    }
+
+    .header {
+        height: 8vh;
+    }
+    .nav ul {
+        display: flex;
+        list-style: none;
+        gap: 10px;
+        margin-left: -2vw;
+    }
+    #logo{
+        color: white;
+        margin-left: 1vw;
+    }
+    
+    .logo img {
+        display: none;
+        height: 50px;
+    }
+    
 }
