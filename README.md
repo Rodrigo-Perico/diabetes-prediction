@@ -4,7 +4,7 @@ projeto de previsão de diabetes desenvolvid com Django e Machine Learning
 
 ---
 
-## **Como configurar o ambiente de desenvolvimento**
+## **Como configurar o sistema**
 
 1. Clone o repositório:
    ```yaml
