@@ -166,11 +166,11 @@ def Consulta(request):
             mensagem = ""
             # Exibir resultado da predição
             if prediction == 1:
-                mensagem = 'Dado os dados, a predição de diabetes é POSITIVA !'
+                mensagem = 'O resultado da predição de diabetes é POSITIVA !'
                           
                 return render(request, './home/Consulta.html', {'mensagem': mensagem})
             else:
-                mensagem = 'Dado os dados, a predição de diabetes é NEGATIVA !'
+                mensagem = 'O resultado da predição de diabetes é NEGATIVA !'
                 return render(request, './home/Consulta.html', {'mensagem': mensagem})
         except Exception as e:
             return render(request, './home/Consulta.html')

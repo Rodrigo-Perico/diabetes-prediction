@@ -63,7 +63,7 @@ class Cadastro(models.Model):
 
 
  #CRIAR TABELA DE PREDIÇÃO DE MODO A SALVAR INFORMAÇÕES DE TUDO!
-from django.db import models
+#from django.db import models
 
 """
 # Modelo para armazenar informações de predições

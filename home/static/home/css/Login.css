@@ -6,135 +6,121 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     flex-direction: column;
-}
+    background-color: rgba(0, 0, 0, 0.723);
+    background-blend-mode: overlay;
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-}
 
-.header h1 {
-    color: red;
-    font-size: 24px;
-    margin: 10px 0 0 0;
-}
+    /* Imagem de fundo */
+    background-image: url('/static/home/img/especialista-ou-generalista.jpg');
+    background-size: cover; /* Faz a imagem preencher toda a área */
+    background-position: top; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição */
 
-.medical-icon {
-    font-size: 40px;
-    color: red; 
-    animation: pulse 1.5s infinite;
+    
+    /* Sobreposição opaca */
+    position: relative; /* Torna o elemento pai para a sobreposição */
 }
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
 .login-container {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: 350px;
+    background: linear-gradient(145deg, #ffffff, #f3f3f3);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    width: 360px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-container:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .login-container h2 {
-    margin-bottom: 20px;
-    color: #333; 
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.input-group label {
+label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    text-align: left;
+    font-size: 0.95rem;
     color: #555;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-.input-group input {
+input[type="text"],
+input[type="password"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border 0.3s;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.input-group input:focus {
-    border: 1px solid #007bff; 
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
     outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
 }
 
-button {
+input[type="submit"] {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #ffffff;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 p {
     margin-top: 20px;
+    font-size: 0.95rem;
+    color: #555;
 }
 
 p a {
-    color: #007bff; 
+    color: #007bff;
     text-decoration: none;
+    font-weight: bold;
 }
 
 p a:hover {
     text-decoration: underline;
-    color: #0056b3; 
+    color: #0056b3;
 }
 
-/* Consultas de mídia para responsividade */
 @media (max-width: 768px) {
     .login-container {
-        width: 90%; /* Largura responsiva para dispositivos móveis */
-        padding: 20px; /* Menos padding em dispositivos menores */
+        width: 90%;
+        padding: 30px;
     }
 
-    .header h1 {
-        font-size: 20px; /* Reduz o tamanho da fonte no cabeçalho */
-    }
-}
-
-@media (min-width: 1200px) {
-    body {
-        height: 100vh; /* Garante que ocupe toda a altura da tela */
-    }
-
-    .login-container {
-        width: 400px; /* Largura maior em telas grandes */
+    h2 {
+        font-size: 1.5rem;
     }
 }
-
