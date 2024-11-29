@@ -63,11 +63,11 @@ body {
     color: #333; 
 }
 
-/* Define grid para três colunas */
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px; /* Espaçamento entre colunas e linhas */
+    gap: 20px; 
 }
 
 .input-group {
@@ -77,8 +77,9 @@ body {
 .input-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
     color: #555;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .input-group select,
@@ -91,7 +92,7 @@ body {
     transition: border 0.3s;
     appearance: none;
     background-color: #fff;
-    padding-right: 30px; /* Espaço para a seta */
+    padding-right: 30px; 
 }
 
 .input-group select:focus,
@@ -116,7 +117,7 @@ button {
     cursor: pointer;
     transition: background 0.3s;
     margin-top: 20px;
-    grid-column: span 3; /* Expande o botão por toda a largura em três colunas */
+    grid-column: span 3; 
 }
 
 button:hover {
@@ -155,13 +156,13 @@ p a:hover {
 }
 
 
-/* Responsividade para telas menores */
+
 @media (max-width: 768px) {
     .consulta-container {
         width: 90%;
     }
 
     .form-grid {
-        grid-template-columns: 1fr; /* Altera para uma coluna em telas pequenas */
+        grid-template-columns: 1fr; 
     }
 }

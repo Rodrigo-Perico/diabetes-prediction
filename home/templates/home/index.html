@@ -9,7 +9,6 @@
     <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         
         <div class="container">
@@ -27,18 +26,16 @@
         </div>
         </header>
 
-        <!-- Main Content -->
         <main class="main">
             <div class="hero">
                 <div class="hero-content">
                     <h1>D<span class="highlight">IA</span>BETES</h1>
                     <p>PREDIÇÃO DE DIABETES USANDO MACHINE LEARNING</p>
-                    <a href="#" class="button">Teste Grátis</a>
+                    <a href="{% url 'cadastro' %}" class="button">Teste Grátis</a>
                 </div>
             </div>
         </main>
         
-    <!-- Footer -->
     <footer class="footer">
         <div class="container" id="footerconteiner">
             <p>&copy; 2024 Sistema Médico. Todos os direitos reservados.</p>

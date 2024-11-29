@@ -1,4 +1,3 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -14,9 +13,6 @@ body {
     box-sizing: border-box;
 }
 
-
-
-/* Header */
 .header {
     background-color: #004080;
     padding: 15px 0;
@@ -66,7 +62,6 @@ body {
     background-color: #0066cc;
 }
 
-/* Hero Section */
 .hero {
     background-image: url('/static/home/img/especialista-ou-generalista.jpg');
     background-size: cover;
@@ -78,7 +73,7 @@ body {
     background-blend-mode: overlay;
     width: 100vw;
     height: 88vh;
-    background-repeat: no-repeat; /* Evita repetição */
+    background-repeat: no-repeat; 
 }
 
 .hero-content {
@@ -162,9 +157,6 @@ body {
     width: 100%;
   }
   
-  
-  /* optional reset for presentation */
-  
   .container {
     padding-top: 50px;
     margin: 0 auto;
@@ -184,7 +176,6 @@ body {
     background-color: #004080;
 }
 
-/* Footer */
 .footer {
     background-color: #004080;
     color: white;
@@ -198,13 +189,7 @@ body {
 }
 
 
-/* Responsiveness */
 @media (max-width: 768px) {
-    .hero h1 {
-    }
-
-    .hero p {
-    }
     .nav{
         margin-bottom: 10vh;
         margin-right: 30vw;
@@ -221,7 +206,6 @@ body {
         margin-right: 2vw;
         gap: 10px;
         font-size: 20px;
-         /* Removido "margin-" que estava incompleto */
     }
 
     .header {

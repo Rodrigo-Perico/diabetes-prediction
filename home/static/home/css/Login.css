@@ -16,17 +16,11 @@ body {
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.723);
     background-blend-mode: overlay;
-
-
-    /* Imagem de fundo */
     background-image: url('/static/home/img/especialista-ou-generalista.jpg');
-    background-size: cover; /* Faz a imagem preencher toda a área */
-    background-position: top; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita repetição */
-
-    
-    /* Sobreposição opaca */
-    position: relative; /* Torna o elemento pai para a sobreposição */
+    background-size: cover; 
+    background-position: top;
+    background-repeat: no-repeat; 
+    position: relative; 
 }
 .login-container {
     background: linear-gradient(145deg, #ffffff, #f3f3f3);
